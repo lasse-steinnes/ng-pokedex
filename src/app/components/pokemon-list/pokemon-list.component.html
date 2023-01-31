@@ -5,18 +5,18 @@
         <p>{{pokemon.name}}</p>
         <img src="assets/images/placeholder.png" style="width: 72px; height:72px;"/>
 
-        <div *ngIf="isTrainerPage() then release else catch"></div>
-        <ng-template #release>
-            <button type="button" (click)="releasePokemon(pokemon)">
-                Release!
-            </button>
-        </ng-template>
-        <ng-template #catch>
-            <button type="button" (click)="catchPokemon(pokemon)">
-                Catch!
-            </button>
-        </ng-template>
-
+        <div [ngSwitch]="action">
+            <div *ngSwitchCase="pokeAction.Release"> 
+                <button type="button" (click)="releasePokemon(pokemon)">
+                    Release!
+                </button>
+            </div>
+            <div *ngSwitchCase="pokeAction.Catch"> 
+                <button type="button" (click)="catchPokemon(pokemon)">
+                    Catch!
+                </button>
+            </div>
+        </div>
         <br><br>
     </div>
   </li>

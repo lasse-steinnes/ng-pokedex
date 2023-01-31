@@ -9,14 +9,13 @@ import { Component, EventEmitter, Input, Output, OnInit  } from "@angular/core";
 
 export class PokemonList implements OnInit{
     pokemons:Pokemon[] = [];
-    trainer:boolean = true;
+    action:PokeAction = PokeAction.Catch;
+
+    get pokeAction(): typeof PokeAction { return PokeAction; }
 
     ngOnInit(): void {  
         this.pokemons = [new Pokemon("Ditto"), new Pokemon("Pikachu")];
-    }
-
-    isTrainerPage():boolean {
-        return false;
+        this.action = PokeAction.Catch;
     }
 
     catchPokemon(pokemon:Pokemon){
@@ -27,6 +26,11 @@ export class PokemonList implements OnInit{
         console.log(pokemon.name + " released!");
     }
 }
+
+export enum PokeAction{
+    Catch, Release
+}
+
 
 class Pokemon{
     name:string = "";
