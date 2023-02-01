@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 
 @Component({
     selector: 'app-pokemon-catalogue-page',
@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 
 export class PokemonCateloguePage{
-    
+    @Output() action:string = "Catch";
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 
 @Component({
     selector: 'app-trainer-page',
@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 
 export class TrainerPage{
-    
+    @Output() action:string = "Release";
 }
