@@ -7,8 +7,8 @@
 /bazel-out
 
 # ignore env 
-./src/app/environments*
-    
+/src/app/environments/
+
 # Node
 /node_modules
 npm-debug.log
