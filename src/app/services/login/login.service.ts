@@ -18,11 +18,12 @@ export class LoginService {
     public login(username:string): Observable<User>{
         return this.checkUsername(username)
         .pipe(
-            switchMap((user: User | undefined) => {
-                if(user===undefined){
+            switchMap((user: User | undefined) => { // user is either of type User or undefined, 
+                // switchmap allows us to change observable
+                if(user===undefined){ //user does not exist
                     return this.createUser(username)
-                }
-                return of(user);
+                } 
+                return of(user); // return the existing user insted of working with created object
             }),
             tap((user: User) => {
                 storageUtil.storageSave<User>(StorageKeys.User, user);
@@ -30,13 +31,16 @@ export class LoginService {
         )
     }
 
+    //public getPokemon(pokemons: []): Observable<Caught>{
+    //    return pokemon; 
+    //}
 
     private checkUsername(username: string): Observable<User | undefined> {
         return this.http.get<User[]>(`${apiTrainers}?username=${username}`)
         .pipe(
-            map((Response: User[]) =>  Response.pop())
+            map((response: User[]) =>  response.pop())
         ) 
-    }
+    } // returns an observable.
 
     private createUser(username: string): Observable<User> {
        const user = {
@@ -50,9 +54,13 @@ export class LoginService {
         "x-api-key": API_KEY
     });
     console.log(username)
-    return this.http.post<User>(apiTrainers,user,{
+    return this.http.post<User>(apiTrainers,user,{ // url, object
         headers
     })
+    }
+
+    private updateData(data: any, id: string): Observable<any> {
+        return this.http.patch(`${apiTrainers}/${id}`, data)
     }
 
 }
