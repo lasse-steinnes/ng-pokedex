@@ -1,5 +1,5 @@
 // service for CRUD operations for trainers
-
+/*
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment'
@@ -102,4 +102,4 @@ this.userService.postData(body)
     ]
   } 
 
-}
+}*/ 

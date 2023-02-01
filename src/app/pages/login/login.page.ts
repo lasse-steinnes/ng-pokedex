@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { TrainerService } from 'src/app/services/crud/trainers.service';
+//import { TrainerService } from 'src/app/services/crud/trainers.service';
 
 @Component({
     selector: 'app-login-page',
@@ -10,16 +10,16 @@ import { TrainerService } from 'src/app/services/crud/trainers.service';
 
 export class LoginPage{
 
-    constructor (private readonly router: Router, private trainerSevice: TrainerService) { }
+    constructor (private readonly router: Router) { } // ,private trainerService: TrainerService 
+    /*ngOnInit() {
+        this.trainerService.getTrainers()
+          .subscribe(data => {
+            console.log(data)
+          })
+      }*/
 
     handleLogin(): void{
         this.router.navigateByUrl("/trainer")
     }
     
-    ngOnInit() {
-        this.trainerService.getTrainers()
-          .subscribe(data => {
-            console.log(data)
-          })
-      }
 }
