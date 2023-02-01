@@ -27,10 +27,12 @@ export class LoginFormComponent {
 
         console.log(username);
         
+        
 
         this.loginService.login(username)
         .subscribe({
             next: (user: User) => {
+                console.log(user)
                 this.userService.user = user;
                 this.login.emit();
             },
