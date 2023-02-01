@@ -1,5 +1,6 @@
 
 import { Component, EventEmitter, Input, Output, OnInit  } from "@angular/core";
+import { PokeAction } from "src/app/other/enums";
 
 @Component({
     selector: 'app-pokemon-list',
@@ -52,9 +53,7 @@ export class PokemonList implements OnInit{
     hasPokemon(pokemonName:string) {return this.pokemonsOwned.find(pokemon => pokemon === pokemonName) != undefined; }
 }
 
-export enum PokeAction{
-    Disabled = "Disabled", Catch = "Catch", Release = "Release"
-}
+
 
 
 class Pokemon{

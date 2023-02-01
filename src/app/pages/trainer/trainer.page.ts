@@ -1,4 +1,5 @@
 import { Component, Output } from '@angular/core';
+import { PokeAction } from 'src/app/other/enums';
 
 @Component({
     selector: 'app-trainer-page',
@@ -7,5 +8,6 @@ import { Component, Output } from '@angular/core';
 })
 
 export class TrainerPage{
-    @Output() action:string = "Release";
+    //What action should be enabled in this page
+    @Output() action:PokeAction = PokeAction.Release;
 }

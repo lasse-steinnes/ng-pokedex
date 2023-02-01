@@ -4,8 +4,8 @@
     <div style="background-color: grey; width: 128px;">
         <p>{{pokemon.name}}</p>
         <img src="assets/images/placeholder.png" style="width: 72px; height:72px;"/>
-        <div *ngIf="pokemon.action != pokeAction.Disabled; then thenBlock"></div>
-        <ng-template #thenBlock>
+        <div *ngIf="pokemon.action != pokeAction.Disabled; then enabledAction"></div>
+        <ng-template #enabledAction>
             <button type="button" (click)="executeAction(pokemon)">
                 {{pokemon.action}}
             </button>
