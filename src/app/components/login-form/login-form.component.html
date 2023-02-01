@@ -1,3 +1,8 @@
 <form #loginForm="ngForm" (ngSubmit)="loginSubmit(loginForm)"> 
+<fieldset>
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" class ="border border-slate-300" placeholder="Enter name here"/>
+</fieldset>
 
+<button type="submit">Login</button>
 </form>

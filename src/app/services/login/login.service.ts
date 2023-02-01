@@ -2,9 +2,9 @@ import { Injectable } from "@angular/core";
 import { map, Observable, of , switchMap} from 'rxjs';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { User } from "src/app/models/user.model";
-import { environment } from "src/environments/environment";
+import { environment } from "src/environments/environments";
 
-const {apiUsers, apiKey} = environment
+const {apiTrainers, apiKey} = environment
 
 @Injectable({
     providedIn: 'root'
@@ -27,7 +27,7 @@ export class LoginService {
 
 
     private checkUsername(username: string): Observable<User | undefined> {
-        return this.http.get<User[]>(`${apiUsers}?username=${username}`)
+        return this.http.get<User[]>(`${apiTrainers}?username=${username}`)
         .pipe(
             map((Response: User[]) =>  Response.pop())
         ) 
@@ -44,7 +44,7 @@ export class LoginService {
         "x-api-key": apiKey
     });
 
-    return this.http.post<User>(apiUsers,user,{
+    return this.http.post<User>(apiTrainers,user,{
         headers
     })
     }
