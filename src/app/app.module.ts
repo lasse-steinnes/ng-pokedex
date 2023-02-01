@@ -7,18 +7,23 @@ import { LoginPage } from './pages/login/login.page';
 import { PokemonCateloguePage } from './pages/pokemon-catalogue/pokemon-catalogue.page';
 import { TrainerPage } from './pages/trainer/trainer.page';
 import {HttpClientModule} from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { LoginFormComponent } from './components/login-form/login-form.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPage,
     PokemonCateloguePage,
-    TrainerPage
+    TrainerPage,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,// allows http requests
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

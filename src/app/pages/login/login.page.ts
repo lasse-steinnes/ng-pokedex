@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { TrainerService } from 'src/app/services/crud/trainers.service';
 
 @Component({
@@ -8,8 +9,13 @@ import { TrainerService } from 'src/app/services/crud/trainers.service';
 })
 
 export class LoginPage{
-    constructor(private trainerService: TrainerService){ // make instance of trainerservice on login
+
+    constructor (private readonly router: Router, private trainerSevice: TrainerService) { }
+
+    handleLogin(): void{
+        this.router.navigateByUrl("/trainer")
     }
+    
     ngOnInit() {
         this.trainerService.getTrainers()
           .subscribe(data => {
