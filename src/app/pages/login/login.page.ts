@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TrainerService } from 'src/app/services/crud/trainers.service';
 
 @Component({
     selector: 'app-login-page',
@@ -7,5 +8,12 @@ import { Component } from '@angular/core';
 })
 
 export class LoginPage{
-    
+    constructor(private trainerService: TrainerService){ // make instance of trainerservice on login
+    }
+    ngOnInit() {
+        this.trainerService.getAllData()
+          .subscribe(data => {
+            console.log(data)
+          })
+      }
 }
