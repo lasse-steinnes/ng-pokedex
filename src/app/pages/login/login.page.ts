@@ -11,7 +11,7 @@ export class LoginPage{
     constructor(private trainerService: TrainerService){ // make instance of trainerservice on login
     }
     ngOnInit() {
-        this.trainerService.getAllData()
+        this.trainerService.getTrainers()
           .subscribe(data => {
             console.log(data)
           })
