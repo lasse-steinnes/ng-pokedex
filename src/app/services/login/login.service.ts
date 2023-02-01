@@ -1,10 +1,12 @@
 import { Injectable } from "@angular/core";
-import { map, Observable, of , switchMap} from 'rxjs';
+import { map, Observable, of , switchMap, tap} from 'rxjs';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { User } from "src/app/models/user.model";
 import { environment } from "src/environments/environments";
+import { storageUtil } from "src/app/utils/storage.util";
+import { StorageKeys } from "src/app/enums/storage-keys.enum";
 
-const {apiTrainers, apiKey} = environment
+const {apiTrainers, API_KEY} = environment
 
 @Injectable({
     providedIn: 'root'
@@ -21,6 +23,9 @@ export class LoginService {
                     return this.createUser(username)
                 }
                 return of(user);
+            }),
+            tap((user: User) => {
+                storageUtil.storageSave<User>(StorageKeys.User, user);
             })
         )
     }
@@ -38,12 +43,13 @@ export class LoginService {
         username,
         pokemon: []
        };
+       
 
        const headers = new HttpHeaders({
         "Content-Type": "application/json",
-        "x-api-key": apiKey
+        "x-api-key": API_KEY
     });
-
+    console.log(username)
     return this.http.post<User>(apiTrainers,user,{
         headers
     })
