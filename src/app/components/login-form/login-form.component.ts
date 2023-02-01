@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
-import { LoginService } from 'src/app/services/login/login.service'
 import { NgForm } from '@angular/forms'
+import { LoginService } from 'src/app/services/login/login.service'
+
 
 @Component({
     selector: 'app-login-form',
@@ -15,6 +16,10 @@ export class LoginFormComponent {
     public loginSubmit(loginForm: NgForm): void {
 
         const { username } = loginForm.value;
+
+        console.log(username);
+        
+        return;
 
         this.loginService.login(username)
         .subscribe({
