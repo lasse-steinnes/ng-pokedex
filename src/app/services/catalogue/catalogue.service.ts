@@ -16,11 +16,15 @@ export class PokemonCatalogueService {
     private _loading: boolean = false;
 
     get pokemons(): Pokemon[]{ // can use readonly and this get-method to obtain pokemons
-        return this._pokemons;
+        return this._pokemons; // set pokemon as property
     }
 
     get error(): string { // can use this to expose error msg.
         return this._error;
+    }
+
+    get loading(): boolean { // set loading as a property
+        return this._loading;
     }
 
     constructor(private readonly http: HttpClient) {}
@@ -34,10 +38,10 @@ export class PokemonCatalogueService {
                 this._loading = false;
             }
             ))
-        )
         .subscribe({
             next: (pokemons: Pokemon[]) => { // in completion return array of pokemon
                 this._pokemons = pokemons;
+                console.log("findings: ",pokemons)
             },
             error: (error: HttpErrorResponse) => { // when something goes wrong
                 this._error = error.message;

@@ -1,2 +1,5 @@
+<main class = "container mx-auto p-4">
 <p> Pokemon catalogue! </p>
+<p *ngIf ="loading"> Loading pokemon...</p> 
 <app-pokemon-list [action]="action"></app-pokemon-list>
+</main>
