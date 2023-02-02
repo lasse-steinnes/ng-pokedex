@@ -10,6 +10,9 @@ import {HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { PokemonList } from './components/pokemon-list/pokemon-list.component';
+import { Catch } from './components/catch-and-release/catch.component';
+import { Release } from './components/catch-and-release/release.component';
+import { Pokemon } from './components/pokemon/pokemon.component';
 
 
 @NgModule({
@@ -19,7 +22,11 @@ import { PokemonList } from './components/pokemon-list/pokemon-list.component';
     PokemonCateloguePage,
     PokemonList,
     TrainerPage,
-    LoginFormComponent
+    LoginFormComponent,
+    PokemonList,
+    Catch,
+    Release,
+    Pokemon
   ],
   imports: [
     BrowserModule,
