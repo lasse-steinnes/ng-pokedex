@@ -10,9 +10,9 @@ import { Router } from '@angular/router';
 export class LoginPage{
 
     constructor (private readonly router: Router) { }
-
+    //routes the user from the login page to the pokemon catalogue
     handleLogin(): void{
-        this.router.navigateByUrl("/trainer")
+        this.router.navigateByUrl("/pokemon-catalogue")
     }
     
 }

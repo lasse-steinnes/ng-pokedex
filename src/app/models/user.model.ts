@@ -1,4 +1,4 @@
-//specifies what User data set is
+//specifies what the User data set is
 export interface User {
     id: number;
     username: string;

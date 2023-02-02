@@ -55,6 +55,7 @@ export class LoginService {
             "Content-Type": "application/json",
             "x-api-key": API_KEY
         });
+        //posts the new user to the api
         console.log(username)
         return this.http.post<User>(apiTrainers, user, {
             headers
