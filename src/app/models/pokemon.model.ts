@@ -1,6 +1,6 @@
 export interface Pokemon {
-    name: "poke-name",
-    url: "poke-url" 
+    name: string,
+    url: string
 }
 
 // extract id from last /x/ x=id
