@@ -1,80 +1,104 @@
 
 import { Component, EventEmitter, Input, Output, OnInit  } from "@angular/core";
 import { PokeAction } from "src/app/other/enums";
+import { PokemonJson } from "src/app/other/json";
 
 @Component({
     selector: 'app-pokemon-list',
     templateUrl: 'pokemon-list.component.html',
-    styleUrls: ['pokemon-list.component.css']
+    styleUrls: ['pokemon-list.component.css'],
+    providers: []
 })
 
 export class PokemonList implements OnInit{
-    pokemons:Pokemon[] = [];
-    pokemonsOwned:string[] = [];
+    items:Item[] = [];//items to display
+    pokemonsOwned:string[] = [];//owned pokemons
 
-    @Input() action:string = PokeAction.Disabled;
-    storedAction:string = PokeAction.Disabled;
+    @Input() action:PokeAction = PokeAction.Disabled;
 
     get pokeAction(): typeof PokeAction { return PokeAction; }
 
     ngOnInit(): void {  
-        this.pokemons = [new Pokemon("Ditto"), new Pokemon("Pikachu")];
-        this.pokemonsOwned.push("Pikachu");
 
-        for(let pokemon of this.pokemons)
+        this.items = [new Item(new PokemonJson("Ditto")), new Item(new PokemonJson("Pikachu"))];
+        // this.pokemons = [new Pokemon("Ditto"), new Pokemon("Pikachu")];
+         this.pokemonsOwned.push("Pikachu");        
+
+        for(let item of this.items)
         {
-            if(this.hasPokemon(pokemon.name) && this.action === PokeAction.Release)
+            if(this.hasPokemon(item.pokemon.name) && this.action === PokeAction.Release)
             {
-                pokemon.action = PokeAction.Release;
+                item.availableAction = PokeAction.Release;
             }
-            else if(!this.hasPokemon(pokemon.name) && this.action === PokeAction.Catch)
+            else if(!this.hasPokemon(item.pokemon.name) && this.action === PokeAction.Catch)
             {
-                pokemon.action = PokeAction.Catch;
+                item.availableAction = PokeAction.Catch;
             }
             else
             {
-                pokemon.action = PokeAction.Disabled;
+                item.availableAction = PokeAction.Disabled;
             }            
         }
-
-        console.log(this.action);
     }
 
-    calculateAction(pokemon:Pokemon)
+    getAction(pokemon:PokemonJson):PokeAction
     {
+        let result = PokeAction.Disabled;
 
+        switch(this.action)
+        {
+            case PokeAction.Catch:
+                if(!this.hasPokemon(pokemon.name))
+                    result = PokeAction.Catch;
+            break;
+            case PokeAction.Release:
+                if(this.hasPokemon(pokemon.name))
+                    result = PokeAction.Release;
+            break;
+            default:
+
+            break;
+        }
+
+        return result;
     }
 
-    executeAction(pokemon:Pokemon){
-        console.log(pokemon.name + " " + pokemon.action);
-        
+    executeAction(item:Item)
+    {
+        switch(this.getAction(item.pokemon))
+        {
+            case PokeAction.Catch:
+                //TODO: Catch
+                console.log("Catching " + item.pokemon.name + " . . .");
+                this.pokemonsOwned.push(item.pokemon.name);
+                item.availableAction = PokeAction.Disabled;
+            break;
+            case PokeAction.Release:
+                //TODO: Release
+                console.log("Releasing " + item.pokemon.name + " . . .");
+                let index:number =  this.pokemonsOwned.findIndex(pokemon => pokemon === item.pokemon.name);
+                if(index >= 0)
+                {
+                    delete this.pokemonsOwned[index];
+                    item.availableAction = PokeAction.Disabled;
+                }
+            break;
+            default:
+
+            break;           
+        }
     }
 
     hasPokemon(pokemonName:string) {return this.pokemonsOwned.find(pokemon => pokemon === pokemonName) != undefined; }
 }
 
+class Item{
+    pokemon:PokemonJson;
+    availableAction:PokeAction;
 
-
-
-class Pokemon{
-    json:PokemonJson;
-    action:string = "";
-
-    constructor(name:string)
+    constructor(pokemon:PokemonJson)
     {
-        this.json = new PokemonJson(name);
-    }  
-    
-    get name() { return this.json.name; }
-    get imageUrl() { return this.json.imageUrl; }
-}
-
-class PokemonJson{
-    name:string = "";
-    imageUrl:string = "";
-
-    constructor(name:string)
-    {
-        this.name = name;
+        this.pokemon = pokemon;
+        this.availableAction = PokeAction.Disabled;
     }
 }

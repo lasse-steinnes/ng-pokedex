@@ -1,16 +1,16 @@
 <p><em>Select a pokemon from the list to see details.</em></p>
 <ul>
-  <li *ngFor="let pokemon of pokemons">
-    <div style="background-color: grey; width: 128px;">
-        <p>{{pokemon.name}}</p>
-        <img src="assets/images/placeholder.png" style="width: 72px; height:72px;"/>
-        <div *ngIf="pokemon.action != pokeAction.Disabled; then enabledAction"></div>
-        <ng-template #enabledAction>
-            <button type="button" (click)="executeAction(pokemon)">
-                {{pokemon.action}}
-            </button>
-        </ng-template>
-        <br><br>
+  <li *ngFor="let item of items">
+    <app-pokemon [json]="item.pokemon"></app-pokemon>
+    <div [ngSwitch]="action">      
+      <div *ngSwitchCase="pokeAction.Catch">
+        <app-catch [pokemon]="item.pokemon.name"></app-catch>
+      </div>
+      <div *ngSwitchCase="pokeAction.Release">
+        <app-release [pokemon]="item.pokemon.name"></app-release>
+      </div>
+      <div *ngSwitchDefault>
+      </div>
     </div>
   </li>
 </ul>
