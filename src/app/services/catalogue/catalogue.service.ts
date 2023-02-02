@@ -2,7 +2,7 @@
 import {HttpClient, HttpErrorResponse} from '@angular/common/http'
 import {Injectable} from '@angular/core';
 import { environment } from 'src/environments/environments';
-import {PokemonModel} from '../../models/pokemon.model';
+import {PokemonModel, PokemonRes} from '../../models/pokemon.model';
 import {finalize } from 'rxjs'; // callback method
 const { apiPokemon } =  environment;
 
@@ -32,17 +32,19 @@ export class PokemonCatalogueService {
     public findAllPokemon(): void {
         this._loading = true;
         const getEmAll = "?limit=1008"
-        this.http.get<PokemonModel[]>(`${apiPokemon}${getEmAll}`) // list of pokemons
+        this.http.get<PokemonRes>(`${apiPokemon}${getEmAll}`) // list of pokemons
         .pipe(
             finalize(() => {
                 this._loading = false;
             }
+            // option map remove pokemonRes
+            
             ))
         .subscribe({
-            next: (pokemons: PokemonModel[]) => { // in completion return array of pokemon
-                this._pokemons = pokemons;
+            next: (results: PokemonRes) => { // in completion return array of pokemon
+                this._pokemons = results.results; // pokemons
                 console.log("pokemon obj ", this._pokemons)
-                console.log("findings: ",pokemons)
+                //console.log("findings: ",pokemons)
             },
             error: (error: HttpErrorResponse) => { // when something goes wrong
                 this._error = error.message;

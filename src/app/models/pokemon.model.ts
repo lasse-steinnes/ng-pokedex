@@ -1,14 +1,16 @@
-export interface Poke {
-    name: string,
-    url: string
+export interface PokemonRes {
+    results: PokemonModel[] // make results from model
 }
 
 export interface PokemonModel{
-    count: number,
-    next: string,
-    previous?: any,
-    results: Poke[],
-} // see this: https://bguppl.github.io/interpreters/practice_sessions/ps1.html
+    name: string,
+    url: string,
+} 
+
+// id: number,
+// img: string,
+
+// see this: https://bguppl.github.io/interpreters/practice_sessions/ps1.html
 // potentially: http://json2ts.com/
 // declare module namespace {
 /*
