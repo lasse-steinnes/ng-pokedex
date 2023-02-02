@@ -15,7 +15,7 @@ import { UserService } from 'src/app/services/user/user.service';
 export class LoginFormComponent {
 
     @Output() login: EventEmitter<void> = new EventEmitter();
-
+    //Dependency injection
     constructor(
         private readonly loginService: LoginService,
         private readonly userService: UserService
@@ -25,9 +25,7 @@ export class LoginFormComponent {
 
         const { username } = loginForm.value;
         
-        console.log(username);
-        
-
+        //everytime there is a new input to the observable the inside of the subscribe functions get executed
         this.loginService.login(username)
         .subscribe({
             next: (user: User) => {
