@@ -1,7 +1,7 @@
 
 import { Component, EventEmitter, Input, Output, OnInit  } from "@angular/core";
-import { PokeAction } from "src/app/other/enums";
-import { PokemonJson } from "src/app/other/json";
+import { PokeAction } from "src/app/enums/poke-action.enum";
+import { PokemonJson } from "src/app/models/pokemon.model";
 
 @Component({
     selector: 'app-pokemon-list',

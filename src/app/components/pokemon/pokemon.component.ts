@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { PokemonJson } from "src/app/other/json";
+import { PokemonJson } from "src/app/models/pokemon.model";
 
 
 @Component({
