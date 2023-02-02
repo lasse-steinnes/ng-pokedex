@@ -2,6 +2,8 @@
 import { Component, EventEmitter, Input, Output, OnInit  } from "@angular/core";
 import { PokeAction } from "src/app/enums/poke-action.enum";
 import { PokemonJson } from "src/app/models/pokemon.model";
+import { PokemonCatalogueService } from "src/app/services/catalogue/catalogue.service";
+import { PokemonModel } from "src/app/models/pokemon.model";
 
 @Component({
     selector: 'app-pokemon-list',
@@ -11,14 +13,27 @@ import { PokemonJson } from "src/app/models/pokemon.model";
 })
 
 export class PokemonList implements OnInit{
+    
+    /*get
+
+    <li *ngFor = "let pokemon of pokemons" >
+    <span> {{ pokemon }} </span>
+  </li>
+    
+    constructor(
+            private readonly pokemonCatalogueservice: PokemonCatalogueService)
+            { }
+    */
     items:Item[] = [];//items to display
     pokemonsOwned:string[] = [];//owned pokemons
 
+    @Input() pokemons: PokemonModel[] = [];
     @Input() action:PokeAction = PokeAction.Disabled;
 
     get pokeAction(): typeof PokeAction { return PokeAction; }
 
     ngOnInit(): void {  
+        //this.pokemonCatalogueservice.findAllPokemon();
 
         this.items = [new Item(new PokemonJson("Ditto")), new Item(new PokemonJson("Pikachu"))];
         // this.pokemons = [new Pokemon("Ditto"), new Pokemon("Pikachu")];

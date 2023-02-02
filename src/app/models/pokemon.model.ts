@@ -1,7 +1,29 @@
-export interface Pokemon {
+export interface Poke {
     name: string,
     url: string
 }
+
+export interface PokemonModel{
+    count: number,
+    next: string,
+    previous?: any,
+    results: Poke[],
+} // see this: https://bguppl.github.io/interpreters/practice_sessions/ps1.html
+// potentially: http://json2ts.com/
+// declare module namespace {
+/*
+export interface Result {
+    name: string;
+    url: string;
+}
+
+export interface RootObject {
+    count: number;
+    next: string;
+    previous?: any;
+    results: Result[];
+}}
+*/
 
 export class PokemonJson{
     id:number = 0;

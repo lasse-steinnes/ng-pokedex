@@ -1,5 +1,5 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { Pokemon } from 'src/app/models/pokemon.model';
+import { PokemonModel } from 'src/app/models/pokemon.model';
 import { PokeAction } from 'src/app/enums/poke-action.enum';
 import { PokemonCatalogueService } from 'src/app/services/catalogue/catalogue.service';
 
@@ -11,7 +11,7 @@ import { PokemonCatalogueService } from 'src/app/services/catalogue/catalogue.se
 
 export class PokemonCateloguePage implements OnInit{
     //What action should be enabled in this page
-    get pokemons(): Pokemon[] { // method to get pokemon
+    get pokemons(): PokemonModel[] { // method to get pokemon in template (HTML)
         //console.log(this.pokemonCatalogueService.pokemons);
         return this.pokemonCatalogueService.pokemons; // access pokemons as a property
     }
@@ -26,12 +26,13 @@ export class PokemonCateloguePage implements OnInit{
 
     constructor(
         private readonly pokemonCatalogueService: PokemonCatalogueService // injection
-    ) {
-     }
+    ) { }
 
     ngOnInit(): void {
         this.pokemonCatalogueService.findAllPokemon();
-        console.log(this.pokemons);
+        //const pokeData = this.pokemons;
+        // console.log("instance poke",this.pokemons) async
+        // console.log("catalogue-page ", pokeData);
     }
 
     @Output() action:PokeAction = PokeAction.Catch;
