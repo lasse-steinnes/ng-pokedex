@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
+import { PokeAction } from 'src/app/enums/poke-action.enum';
 
 @Component({
     selector: 'app-trainer-page',
@@ -7,5 +8,6 @@ import { Component } from '@angular/core';
 })
 
 export class TrainerPage{
-    
+    //What action should be enabled in this page
+    @Output() action:PokeAction = PokeAction.Release;
 }

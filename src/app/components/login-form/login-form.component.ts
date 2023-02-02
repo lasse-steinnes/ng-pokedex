@@ -22,7 +22,7 @@ export class LoginFormComponent {
         ){ }
 
     public loginSubmit(loginForm: NgForm): void {
-        
+
         const { username } = loginForm.value;
         
         //everytime there is a new input to the observable the inside of the subscribe functions get executed

@@ -1,0 +1,9 @@
+
+<div *ngIf="enabled; then enabledAction else disabledAction"></div>
+<ng-template #enabledAction>
+    <button type="button" (click)="execute()">
+        {{pokemonAction}}!
+    </button>
+</ng-template>
+<ng-template #disabledAction>
+</ng-template>

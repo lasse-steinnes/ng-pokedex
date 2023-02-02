@@ -20,46 +20,54 @@ export class LoginService {
     //logging in returns an observable User
     public login(username: string): Observable<User> {
         return this.checkUsername(username)
-            .pipe(
-                switchMap((user: User | undefined) => {
-                    if (user === undefined) {
-                        return this.createUser(username)
-                    }
-                    return of(user);
-                }),
-                tap((user: User) => {
-                    storageUtil.storageSave<User>(StorageKeys.User, user);
-                })
-            )
+        .pipe(
+            switchMap((user: User | undefined) => { // user is either of type User or undefined, 
+                // switchmap allows us to change observable
+                if(user===undefined){ //user does not exist
+                    return this.createUser(username)
+                } 
+                return of(user); // return the existing user insted of working with created object
+            }),
+            tap((user: User) => {
+                storageUtil.storageSave<User>(StorageKeys.User, user);
+            })
+        )
     }
 
-    //checks if the username already exists in the api
+    //public getPokemon(pokemons: []): Observable<Caught>{
+    //    return pokemon; 
+    //}
+
+         //checks if the username already exists in the api
     //in the return it checks for the username and either comes back with an array or an empty array
     //response.pop takes the last item on the array and return it back into the map and makes the return value the username
-    //retruns undefined if the array is empty.
+    //returns undefined if the array is empty.
     private checkUsername(username: string): Observable<User | undefined> {
         return this.http.get<User[]>(`${apiTrainers}?username=${username}`)
-            .pipe(
-                map((Response: User[]) => Response.pop())
-            )
+        .pipe(
+            map((response: User[]) =>  response.pop())
+        ) 
     }
-    //creates a new user 
+    // returns an observable.
     private createUser(username: string): Observable<User> {
         const user = {
             username,
             pokemon: []
         };
 
-        
-        const headers = new HttpHeaders({
-            "Content-Type": "application/json",
-            "x-api-key": API_KEY
-        });
-        //posts the new user to the api
-        console.log(username)
-        return this.http.post<User>(apiTrainers, user, {
-            headers
-        })
+       const headers = new HttpHeaders({
+        "Content-Type": "application/json",
+        "x-api-key": API_KEY
+    });
+    //posts the new user to the api
+    console.log(username)
+    return this.http.post<User>(apiTrainers,user,{ // url, object
+        headers
+    })
+    }
+
+    private updateData(data: any, id: string): Observable<any> {
+        return this.http.patch(`${apiTrainers}/${id}`, data)
     }
 
 }
