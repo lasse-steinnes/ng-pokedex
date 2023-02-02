@@ -1,6 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { Pokemon } from 'src/app/models/pokemon.model';
-import { PokeAction } from 'src/app/other/enums';
+import { PokeAction } from 'src/app/enums/poke-action.enum';
 import { PokemonCatalogueService } from 'src/app/services/catalogue/catalogue.service';
 
 @Component({

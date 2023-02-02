@@ -1,5 +1,5 @@
 import { Component, Output } from '@angular/core';
-import { PokeAction } from 'src/app/other/enums';
+import { PokeAction } from 'src/app/enums/poke-action.enum';
 
 @Component({
     selector: 'app-trainer-page',
