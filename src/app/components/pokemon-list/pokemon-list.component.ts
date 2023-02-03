@@ -35,7 +35,7 @@ export class PokemonList implements OnInit{
     ngOnInit(): void {  
         //this.pokemonCatalogueservice.findAllPokemon();
 
-        this.items = [new Item(new PokemonJson("ditto")), new Item(new PokemonJson("pikachu"))];
+        this.items = [new Item(new PokemonJson("DITTO")), new Item(new PokemonJson("PIKACHU"))];
         // this.pokemons = [new Pokemon("Ditto"), new Pokemon("Pikachu")];
          this.pokemonsOwned.push("pikachu");        
 

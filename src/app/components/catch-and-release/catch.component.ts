@@ -1,5 +1,6 @@
 import { HttpErrorResponse, HttpResponse } from "@angular/common/http";
 import { Component, Input, OnInit } from "@angular/core";
+import { User } from "src/app/models/user.model";
 import { IPokemonAction } from "src/app/other/interfaces";
 import { TrainerService } from "src/app/services/trainer/trainer.service";
 
@@ -31,7 +32,7 @@ export class Catch implements OnInit, IPokemonAction {
     onCatchClick(): void {
         this.trainerService.addToPokemonArray(this.pokemon)
         .subscribe({
-            next: (response: any) => {
+            next: (response: User) => {
                 console.log("NEXT", response)
             },
             error: (error: HttpErrorResponse)=> {

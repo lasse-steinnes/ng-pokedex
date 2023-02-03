@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "src/environments/environments";
 import { PokemonModel } from "src/app/models/pokemon.model";
 import { User } from "src/app/models/user.model";
-import { finalize, Observable } from "rxjs";
+import { finalize, Observable, tap } from "rxjs";
 
 const { API_KEY, apiTrainers} = environment
 
@@ -28,7 +28,7 @@ get loading(): boolean{
         private readonly pokemonCatalogueService: PokemonCatalogueService
     ) { }
 
-    public addToPokemonArray (pokemonName: string): Observable<any> {
+    public addToPokemonArray (pokemonName: string): Observable<User> {
         if(!this.userService.user){
             throw new Error("addToPokemonArray: There is no user "); 
         }
@@ -37,7 +37,7 @@ get loading(): boolean{
 
         const pokemonModel: PokemonModel | undefined = this.pokemonCatalogueService.pokemonByName(pokemonName);
 
-        if(!pokemonModel){
+        if(!pokemonModel?.name){
             throw new Error("addToPokemonArray: No pokemon with name: " + pokemonName);
         }  
         if( this.userService.alreadyCaught(pokemonName)){
@@ -45,18 +45,21 @@ get loading(): boolean{
         }
         
         const headers = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'x-api-key-': API_KEY
-        })
+            "Content-Type": "application/json",
+            "x-api-key": API_KEY
+        });
 
         this._loading = true;
 
-        return  this.http.patch(`${apiTrainers}/${user.id}`, {
+        return  this.http.patch<User>(`${apiTrainers}/${user.id}`, {
             pokemon: [...user.pokemon, pokemonModel] 
         }, {
             headers
         })
         .pipe(
+            tap((updatedUser: User) => {
+                this.userService.user = updatedUser;
+            }),
             finalize(() => {
             this._loading = false;
         })
