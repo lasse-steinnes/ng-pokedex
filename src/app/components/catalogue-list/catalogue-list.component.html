@@ -4,7 +4,9 @@
 
 <ng-template #display>
     <div *ngFor="let item of pokemons">
-        <app-catalogue-item [json]="item" (onCatched)="catchPokemon($event)"></app-catalogue-item>
+        <section>
+            <app-catalogue-item [json]="item" (onCatched)="catchPokemon($event)"></app-catalogue-item>
+        </section>
     </div>
 </ng-template>
 

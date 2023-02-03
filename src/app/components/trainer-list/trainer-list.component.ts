@@ -1,7 +1,7 @@
 
-import { Component, EventEmitter, Input, Output, OnInit  } from "@angular/core";
-import { PokeAction } from "src/app/enums/poke-action.enum";
-import { PokemonJson } from "src/app/models/pokemon.model";
+import { Component, OnInit  } from "@angular/core";
+import { PokemonModel } from "src/app/models/pokemon.model";
+import { PokemonCatalogueService } from "src/app/services/catalogue/catalogue.service";
 
 @Component({
     selector: 'app-trainer-list',
@@ -11,25 +11,36 @@ import { PokemonJson } from "src/app/models/pokemon.model";
 })
 
 export class TrainerList implements OnInit{     
-    items:PokemonJson[] = [new PokemonJson("Pikachu"), new PokemonJson("Ditto")];
+    items?:PokemonModel[];
 
     ngOnInit(): void {
         //TODO: Fetch data
+        this.items = this.pokemons;
     }   
 
     //should be called if a change is made to the items
     update(){
         console.log("Trainer list updated!");
+        //TODO: reload the page
+    }
+
+    constructor(private readonly pokemonCatalogueService:PokemonCatalogueService) {
+        this.pokemonCatalogueService.findAllPokemon();
+    }    
+
+    get pokemons():PokemonModel[]{return this.pokemonCatalogueService.pokemons;}
+
+    get loading(): boolean { // expose loading: true/false
+        return this.pokemonCatalogueService.loading;
+    }
+
+    get error(): string {
+        return this.pokemonCatalogueService.error;
+    }    
+
+    catchPokemon(pokemonName:string)
+    {
+        //TODO: add pokemon name to user service
+        console.log(pokemonName + " added to trainer service!");
     }
 }
-
-// class Item{
-//     pokemon:PokemonJson;
-//     availableAction:PokeAction;
-
-//     constructor(pokemon:PokemonJson)
-//     {
-//         this.pokemon = pokemon;
-//         this.availableAction = PokeAction.Disabled;
-//     }
-// }

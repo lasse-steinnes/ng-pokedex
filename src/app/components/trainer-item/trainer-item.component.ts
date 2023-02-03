@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { PokemonJson } from "src/app/models/pokemon.model";
+import { PokemonModel } from "src/app/models/pokemon.model";
 
 @Component({
     selector: "app-trainer-item",
@@ -8,11 +8,20 @@ import { PokemonJson } from "src/app/models/pokemon.model";
 })
 
 export class TrainerItem{
-    @Input() json:PokemonJson = new PokemonJson("");
-    @Output() onRelease:EventEmitter<PokemonJson> = new EventEmitter<PokemonJson>();
+    @Input() json?:PokemonModel;
+    @Output() onRelease:EventEmitter<PokemonModel> = new EventEmitter<PokemonModel>();
+
+    detailed:boolean = false;
 
     btnRelease(){        
-        console.log(this.json.name + " released!");
-        this.onRelease.emit(this.json);
+        console.log(this.json?.name + " released!");
+
+        if(this.json != undefined)
+            this.onRelease.emit(this.json);
+        else
+            console.log("Json invalid!");
     }
+
+    showDetails(){this.detailed = true}
+    hideDetails(){this.detailed = false}
 }

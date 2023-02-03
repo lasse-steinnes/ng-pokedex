@@ -15,6 +15,8 @@ export class CatalogueItem implements OnInit{
     @Input() json?: PokemonModel;
     @Output() onCatched:EventEmitter<string> = new EventEmitter<string>();
     isCaught:boolean = false;
+    detailed:boolean = false;
+
 
     constructor(
         private readonly trainerService: TrainerService
@@ -46,4 +48,7 @@ export class CatalogueItem implements OnInit{
     ngOnInit(): void {
         //TODO: Is caught?
     }
+
+    showDetails(){this.detailed = true}
+    hideDetails(){this.detailed = false}
 }
