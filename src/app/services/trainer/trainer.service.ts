@@ -28,6 +28,7 @@ get loading(): boolean{
         private readonly pokemonCatalogueService: PokemonCatalogueService
     ) { }
 
+    //checks if the user is valid, then checks if the pokemon is valid aswell as if you already have it
     public addToPokemonArray (pokemonName?: string): Observable<User> {
         if(!this.userService.user){
             throw new Error("addToPokemonArray: There is no user "); 
@@ -49,12 +50,13 @@ get loading(): boolean{
         });
 
         this._loading = true;
-
+        //sends a patch to the api with the new pokemon
         return  this.http.patch<User>(`${apiTrainers}/${user.id}`, {
             pokemon: [...user.pokemon, pokemonModel] 
         }, {
             headers
         })
+        //updates the user so the next patch won't overwrite the previous one.
         .pipe(
             tap((updatedUser: User) => {
                 this.userService.user = updatedUser;
