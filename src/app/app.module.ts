@@ -9,10 +9,11 @@ import { TrainerPage } from './pages/trainer/trainer.page';
 import {HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LoginFormComponent } from './components/login-form/login-form.component';
-import { PokemonList } from './components/pokemon-list/pokemon-list.component';
-import { Catch } from './components/catch-and-release/catch.component';
-import { Release } from './components/catch-and-release/release.component';
-import { Pokemon } from './components/pokemon/pokemon.component';
+import { TrainerList } from './components/trainer-list/trainer-list.component';
+import { CatalogueList } from './components/catalogue-list/catalogue-list.component';
+import { CatalogueItem } from './components/catalogue-item/catalogue-item.component';
+import { TrainerItem } from './components/trainer-item/trainer-item.component';
+import { NavigateButton } from './components/navigate-button/navigate-button.component';
 
 
 @NgModule({
@@ -20,13 +21,14 @@ import { Pokemon } from './components/pokemon/pokemon.component';
     AppComponent,
     LoginPage,
     PokemonCateloguePage,
-    PokemonList,
     TrainerPage,
     LoginFormComponent,
-    PokemonList,
-    Catch,
-    Release,
-    Pokemon
+    TrainerList,
+    TrainerItem,
+    CatalogueList,
+    CatalogueItem,
+    NavigateButton
+
   ],
   imports: [
     BrowserModule,

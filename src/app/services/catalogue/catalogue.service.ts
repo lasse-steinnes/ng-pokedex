@@ -11,9 +11,11 @@ const { apiPokemon } =  environment;
 })
 export class PokemonCatalogueService {
 
+
     //private _pokeStats = {} as StatsModel;
     private _pokeStats: StatsModel[] = []; // store stats in array
     private _pokemons: PokemonModel[] = []; // store pokemon object as private init as empty arrray
+
     private _error: string = ""; //error initialize as empty string.
     private _loading: boolean = false;
 
@@ -111,6 +113,11 @@ export class PokemonCatalogueService {
             } 
         })
         
+    }
+}
+
+    public pokemonByName(pokemonName?: string){
+        return this._pokemons.find((pokemonModel?: PokemonModel) => pokemonModel?.name === pokemonName);
     }
 }
 
