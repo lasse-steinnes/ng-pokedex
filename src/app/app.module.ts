@@ -13,6 +13,7 @@ import { TrainerList } from './components/trainer-list/trainer-list.component';
 import { CatalogueList } from './components/catalogue-list/catalogue-list.component';
 import { CatalogueItem } from './components/catalogue-item/catalogue-item.component';
 import { TrainerItem } from './components/trainer-item/trainer-item.component';
+import { NavigateButton } from './components/navigate-button/navigate-button.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { TrainerItem } from './components/trainer-item/trainer-item.component';
     TrainerList,
     TrainerItem,
     CatalogueList,
-    CatalogueItem
+    CatalogueItem,
+    NavigateButton
 
   ],
   imports: [
