@@ -1,6 +1,6 @@
 
 <p>{{json?.id}}. {{json?.name}}</p>
-<img [src]="json?.img" style="width: 72px; height: 72px;"/>
+<img [src]="json?.img" onerror="this.src='assets/images/placeholder.png';" style="width: 72px; height: 72px;"/>
 
 <ng-template [ngIf]="!isCaught">
     <div>
