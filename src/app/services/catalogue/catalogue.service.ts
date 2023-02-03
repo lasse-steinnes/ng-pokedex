@@ -11,7 +11,9 @@ const { apiPokemon } =  environment;
 })
 export class PokemonCatalogueService {
 
+
     private _pokemons: PokemonModel[] = []; // store pokemon object as private init as empty arrray
+
     private _error: string = ""; //error initialize as empty string.
     private _loading: boolean = false;
 
@@ -50,6 +52,10 @@ export class PokemonCatalogueService {
                 this._error = error.message;
             } 
         })
+    }
+
+    public pokemonByName(pokemonName: string){
+        return this._pokemons.find((pokemonModel: PokemonModel) => pokemonModel.name === pokemonName);
     }
 }
 
