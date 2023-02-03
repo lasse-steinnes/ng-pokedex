@@ -1,8 +1,9 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { PokemonJson, PokemonModel } from "src/app/models/pokemon.model";
+import { PokemonModel } from "src/app/models/pokemon.model";
 import { User } from "src/app/models/user.model";
 import { TrainerService } from "src/app/services/trainer/trainer.service";
+import { UserService } from "src/app/services/user/user.service";
 
 
 @Component({
@@ -11,35 +12,43 @@ import { TrainerService } from "src/app/services/trainer/trainer.service";
     styleUrls: ["catalogue-item.component.css"]
 })
 
-export class CatalogueItem implements OnInit{    
+export class CatalogueItem implements OnInit {
     @Input() json?: PokemonModel;
-    @Output() onCatched:EventEmitter<string> = new EventEmitter<string>();
-    isCaught:boolean = false;
-    detailed:boolean = false;
-
-
+    @Output() onCatched: EventEmitter<string> = new EventEmitter<string>();
+    isCaught: boolean = false;
+    detailed: boolean = false;
     constructor(
-        private readonly trainerService: TrainerService
+        private readonly trainerService: TrainerService,
+        private userService: UserService
     ) { }
-    
-    onCatchClick(): void {
-        this.trainerService.addToPokemonArray(this.json?.name)
-        .subscribe({
-            next: (response: User) => {
-                console.log("NEXT", response)
-            },
-            error: (error: HttpErrorResponse)=> {
-                console.log("ERROR", error.message);
-            }
-        })
+
+    get loading(): boolean {
+        return this.trainerService.loading;
     }
 
-    btnCatch():void{
-        this.onCatchClick();
-        console.log(this.json?.name + " catched!");
 
-        
-        if(this.json?.name != undefined)
+    onCatchClick(): void {
+        console.log(this.json?.name)
+        this.trainerService.caughtPokemon(this.json?.name)
+            .subscribe({
+                next: (user: User) => {
+                    console.log("NEXT", user)
+                    this.isCaught = this.userService.alreadyCaught(this.json?.name)
+                },
+                error: (error: HttpErrorResponse) => {
+                    console.log("ERROR", error.message);
+                }
+            })
+    }
+
+    btnCatch(): void {
+        this.onCatchClick();
+
+        if (!this.isCaught) {
+            console.log(this.json?.name + " catched!");
+        }
+
+        if (this.json?.name != undefined)
             this.onCatched.emit(this.json.name);
         else
             console.log("Pokemon data invalid!");
@@ -47,8 +56,9 @@ export class CatalogueItem implements OnInit{
 
     ngOnInit(): void {
         //TODO: Is caught?
+        this.isCaught = this.userService.alreadyCaught(this.json?.name)
     }
 
-    showDetails(){this.detailed = true}
-    hideDetails(){this.detailed = false}
+    showDetails() { this.detailed = true }
+    hideDetails() { this.detailed = false }
 }

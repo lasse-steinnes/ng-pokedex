@@ -8,7 +8,7 @@ import { PokemonModel } from "src/app/models/pokemon.model";
 import { User } from "src/app/models/user.model";
 import { finalize, Observable, tap } from "rxjs";
 
-const { API_KEY, apiTrainers} = environment
+const { API_KEY, apiTrainers } = environment
 
 @Injectable({
     providedIn: 'root'
@@ -16,33 +16,41 @@ const { API_KEY, apiTrainers} = environment
 
 export class TrainerService {
 
-private _loading: boolean = false;
+    private _loading: boolean = false;
 
-get loading(): boolean{
-    return this._loading;
-}
+    get loading(): boolean {
+        return this._loading;
+    }
 
-    constructor (
+    constructor(
         private readonly http: HttpClient,
         private readonly userService: UserService,
         private readonly pokemonCatalogueService: PokemonCatalogueService
     ) { }
 
     //checks if the user is valid, then checks if the pokemon is valid aswell as if you already have it
-    public addToPokemonArray (pokemonName?: string): Observable<User> {
-        if(!this.userService.user){
-            throw new Error("addToPokemonArray: There is no user "); 
+    public caughtPokemon(pokemonName?: string): Observable<User> {
+        if (!this.userService.user) {
+            throw new Error("caughtPokemon: There is no trainer ");
         }
 
-        const user: User = this.userService.user;
+        
 
+
+        const user: User = this.userService.user;
+        console.log(user.pokemon)
         const pokemonModel: PokemonModel | undefined = this.pokemonCatalogueService.pokemonByName(pokemonName);
 
-        if(!pokemonModel?.name){
-            throw new Error("addToPokemonArray: No pokemon with name: " + pokemonName);
-        }   
-        if( this.userService.alreadyCaught(pokemonModel?.name)){
-            throw new Error("addToPokemonArray: Pokemon already caught");
+        if (!pokemonModel) {
+            throw new Error("caughtPokemon: No pokemon with name: " + pokemonName);
+        }
+        if (this.userService.alreadyCaught(pokemonName)) {
+            this.userService.removePokemon(pokemonName!)
+            //throw new Error("caughtPokemon: Pokemon already caught");
+            
+        }
+        else{
+            this.userService.addToCatched(pokemonModel)
         }
         const headers = new HttpHeaders({
             "Content-Type": "application/json",
@@ -50,22 +58,23 @@ get loading(): boolean{
         });
 
         this._loading = true;
+        console.log(user.pokemon)
         //sends a patch to the api with the new pokemon
-        return  this.http.patch<User>(`${apiTrainers}/${user.id}`, {
-            pokemon: [...user.pokemon, pokemonModel] 
+        return this.http.patch<User>(`${apiTrainers}/${user.id}`, {
+            pokemon: [...user.pokemon]
         }, {
             headers
         })
-        //updates the user so the next patch won't overwrite the previous one.
-        .pipe(
-            tap((updatedUser: User) => {
-                this.userService.user = updatedUser;
-            }),
-            finalize(() => {
-            this._loading = false;
-        })
-      )
-    } 
+            //updates the user so the next patch won't overwrite the previous one.
+            .pipe(
+                tap((updatedUser: User) => {
+                    this.userService.user = updatedUser;
+                }),
+                finalize(() => {
+                    this._loading = false;
+                })
+            )
+    }
 
 
 }
