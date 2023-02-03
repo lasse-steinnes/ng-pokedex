@@ -4,6 +4,7 @@ import { PokemonJson, PokemonModel } from "src/app/models/pokemon.model";
 import { User } from "src/app/models/user.model";
 import { TrainerService } from "src/app/services/trainer/trainer.service";
 
+import { PokemonModel } from "src/app/models/pokemon.model";
 
 @Component({
     selector: "app-catalogue-item",
@@ -40,9 +41,14 @@ export class CatalogueItem implements OnInit{
 
         
         if(this.json?.name != undefined)
+        {
             this.onCatched.emit(this.json.name);
+            this.isCaught = true;
+        }
         else
+        {
             console.log("Pokemon data invalid!");
+        }
     }
 
     ngOnInit(): void {
