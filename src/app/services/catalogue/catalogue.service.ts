@@ -39,12 +39,22 @@ export class PokemonCatalogueService {
             finalize(() => {
                 this._loading = false;
             }
-            // option map remove pokemonRes
+            // option map remove pokemonR
             
             ))
         .subscribe({
             next: (results: PokemonRes) => { // in completion return array of pokemon
                 this._pokemons = results.results; // pokemons
+
+                // adding id and img url
+                results.results.forEach((pokeObject,index) => {
+                    pokeObject.name = pokeObject.name.toUpperCase();
+                    pokeObject.id = index + 1;
+                    pokeObject.img = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" 
+                                        + pokeObject.id.toString() + ".png"; ;
+                }
+                )
+
                 console.log("pokemon obj ", this._pokemons)
                 //console.log("findings: ",pokemons)
             },
@@ -59,4 +69,4 @@ export class PokemonCatalogueService {
     }
 }
 
-// see for reference: https://gitlab.com/deanvons/guitar-purchaserizer/-/blob/master/src/app/models/guitar.ts
+// see for

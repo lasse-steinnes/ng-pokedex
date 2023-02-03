@@ -5,6 +5,14 @@ export interface PokemonRes {
 export interface PokemonModel{
     name: string,
     url: string,
+    id: number,
+    img: string,
+    hp: number,
+    atk: number,
+    spatk: number,
+    def: number,
+    spdef: number,
+    spd: number,
 } 
 
 // id: number,
