@@ -1,8 +1,14 @@
-<p><em>Select a pokemon from the list to see details.</em></p>
+
+<div *ngIf="loading; else display">
+  <p> loading . . . </p>
+</div>
+
+<ng-template #display>
 <ul>
   <li *ngFor="let item of pokemons"> 
-    <section>
+    <section style="background-color: aliceblue;">
       <app-trainer-item [json]="item" (onRelease)="update()"></app-trainer-item>   
     </section> 
   </li>
 </ul>
+</ng-template>
