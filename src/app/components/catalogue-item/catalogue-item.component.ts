@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { PokemonJson, PokemonModel } from "src/app/models/pokemon.model";
+import { PokemonModel } from "src/app/models/pokemon.model";
 
 @Component({
     selector: "app-catalogue-item",
