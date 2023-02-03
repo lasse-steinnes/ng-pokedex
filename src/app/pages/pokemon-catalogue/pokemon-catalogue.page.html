@@ -1,7 +1,6 @@
 <main class = "container mx-auto p-4">
 <p> Pokemon catalogue! </p>
-<p *ngIf ="loading"> Loading pokemon...</p> 
-<p> Error: {{error}} </p>
-<app-pokemon-list [action]="action"></app-pokemon-list>
-<p> {{pokemons[0].img}} </p>
+<!-- <app-pokemon-list [action]="action"></app-pokemon-list>
+<p> {{pokemons[0].img}} </p> -->
+<app-catalogue-list></app-catalogue-list>
 </main>
