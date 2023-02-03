@@ -64,8 +64,8 @@ export class PokemonCatalogueService {
         })
     }
 
-    public pokemonByName(pokemonName: string){
-        return this._pokemons.find((pokemonModel: PokemonModel) => pokemonModel.name === pokemonName);
+    public pokemonByName(pokemonName?: string){
+        return this._pokemons.find((pokemonModel?: PokemonModel) => pokemonModel?.name === pokemonName);
     }
 }
 

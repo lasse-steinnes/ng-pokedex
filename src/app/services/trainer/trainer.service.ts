@@ -28,7 +28,7 @@ get loading(): boolean{
         private readonly pokemonCatalogueService: PokemonCatalogueService
     ) { }
 
-    public addToPokemonArray (pokemonName: string): Observable<User> {
+    public addToPokemonArray (pokemonName?: string): Observable<User> {
         if(!this.userService.user){
             throw new Error("addToPokemonArray: There is no user "); 
         }
@@ -39,11 +39,10 @@ get loading(): boolean{
 
         if(!pokemonModel?.name){
             throw new Error("addToPokemonArray: No pokemon with name: " + pokemonName);
-        }  
-        if( this.userService.alreadyCaught(pokemonName)){
+        }   
+        if( this.userService.alreadyCaught(pokemonModel?.name)){
             throw new Error("addToPokemonArray: Pokemon already caught");
         }
-        
         const headers = new HttpHeaders({
             "Content-Type": "application/json",
             "x-api-key": API_KEY

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Pokemon } from "src/app/components/pokemon/pokemon.component";
 import { StorageKeys } from "src/app/enums/storage-keys.enum";
+import { PokemonModel } from "src/app/models/pokemon.model";
 import { User } from "src/app/models/user.model";
 import { storageUtil } from "src/app/utils/storage.util";
 
@@ -25,7 +25,7 @@ import { storageUtil } from "src/app/utils/storage.util";
 
          public alreadyCaught(pokemonName: string): boolean {
             if(this._user){
-                return Boolean(this.user?.pokemon.find((pokemon: Pokemon) => pokemon.name === pokemonName))
+                return Boolean(this.user?.pokemon.find((pokemon: PokemonModel) => pokemon.name === pokemonName))
 
             }
             return false;
