@@ -2,7 +2,7 @@
 import {HttpClient, HttpErrorResponse} from '@angular/common/http'
 import {Injectable} from '@angular/core';
 import { environment } from 'src/environments/environments';
-import {Pokemon} from '../../models/pokemon.model';
+import {PokemonModel, PokemonRes} from '../../models/pokemon.model';
 import {finalize } from 'rxjs'; // callback method
 const { apiPokemon } =  environment;
 
@@ -11,11 +11,11 @@ const { apiPokemon } =  environment;
 })
 export class PokemonCatalogueService {
 
-    private _pokemons: Pokemon[] = []; // store pokemon object as private init as empty arrray
+    private _pokemons: PokemonModel[] = []; // store pokemon object as private init as empty arrray
     private _error: string = ""; //error initialize as empty string.
     private _loading: boolean = false;
 
-    get pokemons(): Pokemon[]{ // can use readonly and this get-method to obtain pokemons
+    get pokemons(): PokemonModel[]{ // can use readonly and this get-method to obtain pokemons
         return this._pokemons; // set pokemon as property
     }
 
@@ -32,16 +32,29 @@ export class PokemonCatalogueService {
     public findAllPokemon(): void {
         this._loading = true;
         const getEmAll = "?limit=1008"
-        this.http.get<Pokemon[]>(`${apiPokemon}${getEmAll}`) // list of pokemons
+        this.http.get<PokemonRes>(`${apiPokemon}${getEmAll}`) // list of pokemons
         .pipe(
             finalize(() => {
                 this._loading = false;
             }
+            // option map remove pokemonR
+            
             ))
         .subscribe({
-            next: (pokemons: Pokemon[]) => { // in completion return array of pokemon
-                this._pokemons = pokemons;
-                console.log("findings: ",pokemons)
+            next: (results: PokemonRes) => { // in completion return array of pokemon
+                this._pokemons = results.results; // pokemons
+
+                // adding id and img url
+                results.results.forEach((pokeObject,index) => {
+                    pokeObject.name = pokeObject.name.toUpperCase();
+                    pokeObject.id = index + 1;
+                    pokeObject.img = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" 
+                                        + pokeObject.id.toString() + ".png"; ;
+                }
+                )
+
+                console.log("pokemon obj ", this._pokemons)
+                //console.log("findings: ",pokemons)
             },
             error: (error: HttpErrorResponse) => { // when something goes wrong
                 this._error = error.message;
@@ -50,4 +63,4 @@ export class PokemonCatalogueService {
     }
 }
 
-// see for reference: https://gitlab.com/deanvons/guitar-purchaserizer/-/blob/master/src/app/models/guitar.ts
+// see for

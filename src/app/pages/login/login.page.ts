@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 
 export class LoginPage{
-
+    //routes the user from the login page to the pokemon catalogue
     constructor (private readonly router: Router) { } // ,private trainerService: TrainerService 
     /*ngOnInit() {
         this.trainerService.getTrainers()
@@ -18,8 +18,9 @@ export class LoginPage{
           })
       }*/
 
+
     handleLogin(): void{
-        this.router.navigateByUrl("/trainer")
+        this.router.navigateByUrl("/pokemon-catalogue")
     }
     
 }
