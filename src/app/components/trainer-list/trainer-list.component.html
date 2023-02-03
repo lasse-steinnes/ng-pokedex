@@ -1,6 +1,8 @@
 <p><em>Select a pokemon from the list to see details.</em></p>
 <ul>
-  <li *ngFor="let item of items"> 
-      <app-trainer-item [json]="item" (onRelease)="update()"></app-trainer-item>    
+  <li *ngFor="let item of pokemons"> 
+    <section>
+      <app-trainer-item [json]="item" (onRelease)="update()"></app-trainer-item>   
+    </section> 
   </li>
 </ul>
