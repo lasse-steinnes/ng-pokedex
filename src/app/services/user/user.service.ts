@@ -42,6 +42,14 @@ export class UserService {
         return false;
     }
 
+    public notCaught(pokemonName?: string): boolean {
+        if (this.user?.pokemon.find((pokemons: PokemonModel) => pokemons.name === pokemonName )) {
+            return Boolean(this.user?.pokemon.find((pokemons: PokemonModel) => pokemons.name === pokemonName))
+
+        }
+        return false;
+    }
+
     public addToCatched(pokemon: PokemonModel): void {
         if(this._user) {
             this._user.pokemon.push(pokemon)

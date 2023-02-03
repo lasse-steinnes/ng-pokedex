@@ -34,9 +34,6 @@ export class TrainerService {
             throw new Error("caughtPokemon: There is no trainer ");
         }
 
-        
-
-
         const user: User = this.userService.user;
         console.log(user.pokemon)
         const pokemonModel: PokemonModel | undefined = this.pokemonCatalogueService.pokemonByName(pokemonName);
@@ -49,7 +46,7 @@ export class TrainerService {
             //throw new Error("caughtPokemon: Pokemon already caught");
             
         }
-        else{
+        else if (this.userService.notCaught(pokemonName)){
             this.userService.addToCatched(pokemonModel)
         }
         const headers = new HttpHeaders({
