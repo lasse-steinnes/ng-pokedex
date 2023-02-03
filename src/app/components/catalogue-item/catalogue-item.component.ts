@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { PokemonJson } from "src/app/models/pokemon.model";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { PokemonJson, PokemonModel } from "src/app/models/pokemon.model";
 
 @Component({
     selector: "app-catalogue-item",
@@ -8,11 +8,17 @@ import { PokemonJson } from "src/app/models/pokemon.model";
 })
 
 export class CatalogueItem implements OnInit{    
-    @Input() json:PokemonJson = new PokemonJson("");
+    @Input() json?:PokemonModel;
+    @Output() onCatched:EventEmitter<string> = new EventEmitter<string>();
     isCaught:boolean = false;
 
     btnCatch():void{
-        console.log(this.json.name + " catched!");
+        console.log(this.json?.name + " catched!");
+
+        if(this.json?.name != undefined)
+            this.onCatched.emit(this.json.name);
+        else
+            console.log("Pokemon data invalid!");
     }
 
     ngOnInit(): void {
