@@ -5,7 +5,6 @@ import { User } from "src/app/models/user.model";
 import { TrainerService } from "src/app/services/trainer/trainer.service";
 import { UserService } from "src/app/services/user/user.service";
 
-
 @Component({
     selector: "app-catalogue-item",
     templateUrl: "catalogue-item.component.html",
@@ -14,6 +13,7 @@ import { UserService } from "src/app/services/user/user.service";
 
 export class CatalogueItem implements OnInit {
     @Input() json?: PokemonModel;
+
     @Output() onCatched: EventEmitter<string> = new EventEmitter<string>();
     isCaught: boolean = false;
     detailed: boolean = false;
@@ -24,6 +24,7 @@ export class CatalogueItem implements OnInit {
 
     get loading(): boolean {
         return this.trainerService.loading;
+
     }
 
 
@@ -48,10 +49,14 @@ export class CatalogueItem implements OnInit {
             console.log(this.json?.name + " catched!");
         }
 
-        if (this.json?.name != undefined)
+        if (this.json?.name != undefined){
             this.onCatched.emit(this.json.name);
+            this.isCaught = true;
+        }
         else
+        {
             console.log("Pokemon data invalid!");
+        }
     }
 
     ngOnInit(): void {
