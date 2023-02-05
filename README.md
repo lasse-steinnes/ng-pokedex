@@ -5,7 +5,7 @@
 
 > Make an Angular application for catching Pokémon with login-page, pokedex and a trainer-page. 
 
-> Focus on object orientation, use of components and angular decorators.
+> Focus on object orientation, components and getting familiar with angular decorators.
 
 > Part of the Noroff fullstack .NET accelerate module.
 
