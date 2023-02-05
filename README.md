@@ -1,9 +1,39 @@
 # NgPokedex
+![build](https://img.shields.io/badge/build-passing-green)
+
+## Abstract
+
+> Make an Angular application for catching Pokémon with login-page, pokedex and a trainer-page. 
+
+> Part of the Noroff fullstack .NET accelerate module.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.3.
 
-## Development server
+## Download
+You can download the code with ```bash== git clone (this url) ```.
 
+## Functionality
+The following pages are available, with described GUI options:
+1. Login: Login with your name and begin the Pokémon journey.
+2. Pokedex: Catch'em all, or just explore Pokémon stats for your favourites. Here you will find a page with Pokémon from several concecutive generations in the franchise.
+3. Trainerpage/Party: An overview of Pokémon you have catched as a trainer. Feel free to release any Pokémon of your own choice. 
+
+## Dependencies
+[![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/)
+[![angular](https://img.shields.io/badge/Angular-DD0031.svg?style=for-the-badge&logo=Angular&logoColor=white)](https://angular.io/)
+[![js](https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=for-the-badge&logo=JavaScript&logoColor=black)](https://www.javascript.com)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-06B6D4.svg?style=for-the-badge&logo=Tailwind-CSS&logoColor=white)](https://en.wikipedia.org/wiki/CSS)
+[![html]https://img.shields.io/badge/HTML5-E34F26.svg?style=for-the-badge&logo=HTML5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![vscode](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC.svg?style=for-the-badge&logo=Visual-Studio-Code&logoColor=white)](https://code.visualstudio.com/)
+[![windows](https://img.shields.io/badge/Windows-0078D6.svg?style=for-the-badge&logo=Windows&logoColor=white)](https://www.microsoft.com/sv-se/windows)
+
+(Want to use badges see e.g. [https://github.com/Ileriayo/markdown-badges](https://github.com/Ileriayo/markdown-badges) or [https://home.aveek.io/GitHub-Profile-Badges/](https://home.aveek.io/GitHub-Profile-Badges/)).
+
+## Project Management
+**Fill in...**
+
+
+## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Code scaffolding
