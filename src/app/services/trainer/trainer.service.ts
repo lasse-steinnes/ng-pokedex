@@ -41,14 +41,14 @@ export class TrainerService {
         if (!pokemonModel) {
             throw new Error("caughtPokemon: No pokemon with name: " + pokemonName);
         }
-        if (this.userService.alreadyCaught(pokemonName)) {
-            this.userService.removePokemon(pokemonName!)
-            //throw new Error("caughtPokemon: Pokemon already caught");
-            
+
+        if (this.userService.pokemonOwned(pokemonName)) {
+            this.userService.removePokemon(pokemonName!)            
         }
-        else if (this.userService.notCaught(pokemonName)){
+        else {
             this.userService.addToCatched(pokemonModel)
         }
+        
         const headers = new HttpHeaders({
             "Content-Type": "application/json",
             "x-api-key": API_KEY

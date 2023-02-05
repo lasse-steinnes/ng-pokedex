@@ -1,7 +1,7 @@
 <p>{{json?.id}}. {{json?.name}}</p>
 <img [src]="json?.img" onerror="this.src='assets/images/placeholder.png';" style="width: 144px; height: 144px;"/>
 
-<div *ngIf="detailed; else detail">    
+<div *ngIf="isDetailed; else notDetailed">    
     <p>hp       : {{json?.hp}} </p>
     <p>atk      : {{json?.atk}} </p>
     <p>sp.atk   : {{json?.spatk}} </p>
@@ -11,7 +11,8 @@
     <p>hide <button (click)="hideDetails()">[<]</button></p>
 </div>
 
-<ng-template #detail>
+<!-- What to display if not displaying detailed info -->
+<ng-template #notDetailed>
     <p>details <button (click)="showDetails()">[>]</button></p>    
 </ng-template>
 

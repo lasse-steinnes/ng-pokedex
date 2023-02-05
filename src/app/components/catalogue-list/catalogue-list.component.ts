@@ -1,6 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { PokemonModel } from "src/app/models/pokemon.model";
+import { User } from "src/app/models/user.model";
 import { PokemonCatalogueService } from "src/app/services/catalogue/catalogue.service";
+import { UserService } from "src/app/services/user/user.service";
+import { CatalogueItem } from "../catalogue-item/catalogue-item.component";
 
 @Component({
     selector:"app-catalogue-list",
@@ -12,7 +15,10 @@ export class CatalogueList implements OnInit{
 
     items:PokemonModel[] = [];
 
-    constructor(private readonly pokemonCatalogueService: PokemonCatalogueService) {
+    constructor(
+        private readonly pokemonCatalogueService: PokemonCatalogueService,
+        private readonly userService:UserService
+        ) {
         
     }    
 
@@ -31,9 +37,14 @@ export class CatalogueList implements OnInit{
         //this.items = this.pokemonCatalogueService.pokemons;
     }
 
-    catchPokemon(pokemonName:string)
+    catchPokemon(item:CatalogueItem)
     {
         //TODO: add pokemon name to user service
-        console.log(pokemonName + " added to trainer service!");
+        console.log(item.pokemonModel?.name + " added to trainer service!");
+
+        if(item.pokemonModel != undefined)
+        {
+            this.userService.catchPokemon(item.pokemonModel?.name);
+        }
     }
 }

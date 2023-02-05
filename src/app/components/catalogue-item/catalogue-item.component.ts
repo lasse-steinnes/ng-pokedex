@@ -13,57 +13,38 @@ import { UserService } from "src/app/services/user/user.service";
 
 export class CatalogueItem implements OnInit {
     @Input() json?: PokemonModel;
+    @Input() isCaught: boolean = false;
+    @Output() onCatched: EventEmitter<CatalogueItem> = new EventEmitter<CatalogueItem>();
 
-    @Output() onCatched: EventEmitter<string> = new EventEmitter<string>();
-    isCaught: boolean = false;
-    detailed: boolean = false;
+    private detailed: boolean = false;
+
     constructor(
         private readonly trainerService: TrainerService,
         private userService: UserService
     ) { }
 
-    get loading(): boolean {
+    private get loading(): boolean {
         return this.trainerService.loading;
-
-    }
-
-
-    onCatchClick(): void {
-        console.log(this.json?.name)
-        this.trainerService.caughtPokemon(this.json?.name)
-            .subscribe({
-                next: (user: User) => {
-                    console.log("NEXT", user)
-                    this.isCaught = this.userService.alreadyCaught(this.json?.name)
-                },
-                error: (error: HttpErrorResponse) => {
-                    console.log("ERROR", error.message);
-                }
-            })
     }
 
     btnCatch(): void {
-        this.onCatchClick();
-
-        if (!this.isCaught) {
-            console.log(this.json?.name + " catched!");
-        }
-
-        if (this.json?.name != undefined){
-            this.onCatched.emit(this.json.name);
+        if(this.json != undefined)
+        {
+            this.onCatched.emit(this);
             this.isCaught = true;
         }
-        else
-        {
-            console.log("Pokemon data invalid!");
-        }
+        else console.log("json undefined");
     }
 
     ngOnInit(): void {
         //TODO: Is caught?
-        this.isCaught = this.userService.alreadyCaught(this.json?.name)
+        this.isCaught = this.userService.pokemonOwned(this.json?.name)
     }
 
     showDetails() { this.detailed = true }
     hideDetails() { this.detailed = false }
+
+    get isDetailed() {return this.detailed;}
+    get pokemonModel() {return this.json;}
+    set setIsCaught(caught:boolean) {this.isCaught = caught;}
 }

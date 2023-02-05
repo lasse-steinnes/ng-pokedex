@@ -5,7 +5,7 @@
 
 <ng-template #display>
 <ul>
-  <li *ngFor="let item of pokemons"> 
+  <li *ngFor="let item of items"> 
     <section style="background-color: aliceblue;">
       <app-trainer-item [json]="item" (onRelease)="update()"></app-trainer-item>   
     </section> 
