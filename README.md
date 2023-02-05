@@ -5,6 +5,8 @@
 
 > Make an Angular application for catching Pokémon with login-page, pokedex and a trainer-page. 
 
+> Focus on object orientation, use of components and angular decorators.
+
 > Part of the Noroff fullstack .NET accelerate module.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.3.
