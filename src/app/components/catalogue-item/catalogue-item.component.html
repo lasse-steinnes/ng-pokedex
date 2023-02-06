@@ -2,18 +2,18 @@
 <img [src]="json?.img" onerror="this.src='assets/images/placeholder.png';" style="width: 144px; height: 144px;"/>
 
 <div *ngIf="isDetailed; else notDetailed">    
-    <!-- <p>hp       : {{json?.hp}} </p>
-    <p>atk      : {{json?.atk}} </p>
-    <p>sp.atk   : {{json?.spatk}} </p>
-    <p>def      : {{json?.def}} </p>
-    <p>sp.def   : {{json?.spdef}} </p>
-    <p>spd      : {{json?.spd}} </p> -->
+    <p>hp       : {{getStat(0)}} </p>
+    <p>atk      : {{getStat(1)}} </p>
+    <p>def      : {{getStat(2)}} </p>
+    <p>sp.atk   : {{getStat(3)}} </p>
+    <p>sp.def   : {{getStat(4)}} </p>
+    <p>spd      : {{getStat(5)}} </p>
     <p>hide <button (click)="hideDetails()">[<]</button></p>
 </div>
 
 <!-- What to display if not displaying detailed info -->
 <ng-template #notDetailed>
-    <p>details <button (click)="showDetails()">[>]</button></p>    
+    <p>details <button (click)="btnShowDetails()">[>]</button></p>    
 </ng-template>
 
 <ng-template [ngIf]="!isCaught">
