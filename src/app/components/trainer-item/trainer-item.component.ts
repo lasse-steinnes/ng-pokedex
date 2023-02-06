@@ -2,6 +2,7 @@ import { HttpErrorResponse } from "@angular/common/http";
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { PokemonModel, StatsModel } from "src/app/models/pokemon.model";
 import { PokemonCatalogueService } from "src/app/services/catalogue/catalogue.service";
+import { UserService } from "src/app/services/user/user.service";
 
 @Component({
     selector: "app-trainer-item",
@@ -17,7 +18,7 @@ export class TrainerItem{
     detailed:boolean = false;
     hasFetchedDetails:boolean = false;
 
-    constructor ( private readonly pokemonCatalogueService:PokemonCatalogueService ) { }
+    constructor ( private readonly pokemonCatalogueService:PokemonCatalogueService, private readonly userService:UserService ) { }
 
     getStat(stat:number){
         return this._pokeStats[stat].base_stat;
@@ -25,7 +26,10 @@ export class TrainerItem{
 
     btnRelease():void {       
         if(this.json != undefined)
+        {
+            this.userService.catchPokemon(this.json.name);
             this.onRelease.emit(this.json);
+        }
         else
             console.log("Json invalid!");
     }

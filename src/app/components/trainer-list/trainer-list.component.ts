@@ -17,12 +17,8 @@ export class TrainerList implements OnInit{
     ngOnInit(): void {
         //TODO: Fetch data
         this.items = this.userService.ownedPokemons;
-    }   
-
-    onRelease(pokeData:PokemonModel){
-        this.userService.catchPokemon(pokeData.name);
-        this.update();
     }
+    
     //should be called if a change is made to the items
     update(){
         this.items = this.userService.ownedPokemons;

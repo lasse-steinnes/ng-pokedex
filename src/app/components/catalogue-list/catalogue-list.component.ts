@@ -36,15 +36,4 @@ export class CatalogueList implements OnInit{
         this.pokemonCatalogueService.findAllPokemon();
         //this.items = this.pokemonCatalogueService.pokemons;
     }
-
-    catchPokemon(item:CatalogueItem)
-    {
-        //TODO: add pokemon name to user service
-        console.log(item.pokemonModel?.name + " added to trainer service!");
-
-        if(item.pokemonModel != undefined)
-        {
-            this.userService.catchPokemon(item.pokemonModel?.name);
-        }
-    }
 }

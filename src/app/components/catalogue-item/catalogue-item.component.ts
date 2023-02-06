@@ -26,7 +26,7 @@ export class CatalogueItem implements OnInit {
     btnCatch(): void {
         if(this.json != undefined)
         {
-            this.onCatched.emit(this);
+            this.userService.catchPokemon(this.json.name);
             this.isCaught = true;
         }
         else console.log("json undefined");

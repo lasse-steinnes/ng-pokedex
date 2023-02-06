@@ -6,7 +6,7 @@
     <ng-template #display>
         <div *ngFor="let item of pokemons" class="float-left place-content-center">
             <section class="border-4 border-gray-300 p-5 mx-2 my-2 bg-red-600">
-                <app-catalogue-item [json]="item" (onCatched)="catchPokemon($event)"></app-catalogue-item>
+                <app-catalogue-item [json]="item"></app-catalogue-item>
             </section>
         </div>
     </ng-template>
