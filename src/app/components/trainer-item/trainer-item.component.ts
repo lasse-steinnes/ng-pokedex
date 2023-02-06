@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { PokemonModel, StatsModel } from "src/app/models/pokemon.model";
-import { PokemonCatalogueService } from "src/app/services/catalogue/catalogue.service";
+import { PokemonCatalogueService } from "src/app/services/pokemon-catalogue/pokemon-catalogue.service";
 import { UserService } from "src/app/services/user/user.service";
 
 @Component({
