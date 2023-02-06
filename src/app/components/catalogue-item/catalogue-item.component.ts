@@ -1,8 +1,5 @@
-import { HttpErrorResponse } from "@angular/common/http";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { PokemonModel } from "src/app/models/pokemon.model";
-import { User } from "src/app/models/user.model";
-import { TrainerService } from "src/app/services/trainer/trainer.service";
 import { UserService } from "src/app/services/user/user.service";
 
 @Component({
@@ -19,12 +16,11 @@ export class CatalogueItem implements OnInit {
     private detailed: boolean = false;
 
     constructor(
-        private readonly trainerService: TrainerService,
         private userService: UserService
     ) { }
 
     private get loading(): boolean {
-        return this.trainerService.loading;
+        return this.userService.loading;
     }
 
     btnCatch(): void {
