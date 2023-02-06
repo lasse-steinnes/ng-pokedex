@@ -32,7 +32,7 @@ The following pages are available, with described GUI options:
 (Want to use badges see e.g. [https://github.com/Ileriayo/markdown-badges](https://github.com/Ileriayo/markdown-badges) or [https://home.aveek.io/GitHub-Profile-Badges/](https://home.aveek.io/GitHub-Profile-Badges/)).
 
 ## Project Management
-An overview of the app services, components and pages were made with [figma](https://www.figma.com/file/ZPxa24oBpF0AHCJXPzEh7u/Untitled?node-id=0%3A1&t=zEcUN1OwWVqYHp6x-0).
+An overview of the app services, components and pages was made with [figma](https://www.figma.com/file/ZPxa24oBpF0AHCJXPzEh7u/Untitled?node-id=0%3A1&t=zEcUN1OwWVqYHp6x-0).
 
 <b href="https://github.com/lasse-steinnes/ng-pokedex/">
   <img width = "800" height = "600" src="https://github.com/lasse-steinnes/ng-pokedex/blob/main/assets/project-management.png">
