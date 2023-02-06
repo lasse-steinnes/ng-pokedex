@@ -5,7 +5,7 @@ import { StorageKeys } from "src/app/enums/storage-keys.enum";
 import {  PokemonModel } from "src/app/models/pokemon.model";
 import { User } from "src/app/models/user.model";
 import { storageUtil } from "src/app/utils/storage.util";
-import { environment } from "src/environments/environments";
+import { environment } from "src/environments/environment.prod";
 import { PokemonCatalogueService } from "../pokemon-catalogue/pokemon-catalogue.service";
 
 const { API_KEY, apiTrainers } = environment

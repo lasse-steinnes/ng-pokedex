@@ -1,7 +1,7 @@
 // catalogue service for the pokemon catalogue.
 import {HttpClient, HttpErrorResponse} from '@angular/common/http'
 import {Injectable} from '@angular/core';
-import { environment } from 'src/environments/environments';
+import { environment } from 'src/environments/environment.prod';
 import {StatsRes, StatsModel, PokemonModel, PokemonRes} from '../../models/pokemon.model';
 import {finalize, map } from 'rxjs'; // callback method
 const { apiPokemon } =  environment;
@@ -10,7 +10,7 @@ const { apiPokemon } =  environment;
     providedIn: 'root'
 })
 export class PokemonCatalogueService {
-
+    
 
     //private _pokeStats = {} as StatsModel;
     private _pokeStats: StatsModel[] = []; // store stats in array
