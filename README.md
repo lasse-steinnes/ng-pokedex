@@ -32,8 +32,7 @@ The following pages are available, with described GUI options:
 (Want to use badges see e.g. [https://github.com/Ileriayo/markdown-badges](https://github.com/Ileriayo/markdown-badges) or [https://home.aveek.io/GitHub-Profile-Badges/](https://home.aveek.io/GitHub-Profile-Badges/)).
 
 ## Project Management
-**Fill in...**
-
+An overview of the app services, components and pages were made with [figma](https://www.figma.com/file/ZPxa24oBpF0AHCJXPzEh7u/Untitled?node-id=0%3A1&t=zEcUN1OwWVqYHp6x-0).
 
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
