@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { map, Observable, of, switchMap, tap } from 'rxjs';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { User } from "src/app/models/user.model";
-import { environment } from "src/environments/environments";
+import { environment } from "src/environments/environment.prod";
 import { storageUtil } from "src/app/utils/storage.util";
 import { StorageKeys } from "src/app/enums/storage-keys.enum";
 
