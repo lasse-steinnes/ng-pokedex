@@ -1,5 +1,6 @@
 export interface PokemonRes {
-    results: PokemonModel[] // make results from model
+    results: PokemonModel[], // make results from model;
+    stats: StatsModel[],
 }
 
 export interface PokemonModel{
@@ -7,14 +8,39 @@ export interface PokemonModel{
     url: string,
     id: number,
     img: string,
-    hp: number,
-    atk: number,
+    // attack: number,
+    // spatk: number,
+    // def: number,
+    // spdef: number,
+    // spd: number,
+    // hp: number,
+}
+
+export interface StatsRes {
+    stats: StatsModel[],
+}
+
+export interface StatInterface{
+    name: string,
+    url: string,
+}
+
+export interface StatsModel{ // model to get base_stats
+    base_stat: number,
+    effort: number,
+    stat: StatInterface,
+}
+
+// {"base_stat":60,"effort":0,"stat":{"name":"hp","url":"https://pokeapi.co/api/v2/stat/1/"}
+
+/*     attack: number,
+    defense: number,
     spatk: number,
     def: number,
     spdef: number,
     spd: number,
-} 
-
+    
+    */
 // id: number,
 // img: string,
 
