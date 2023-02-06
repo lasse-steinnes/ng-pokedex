@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { PokemonModel } from "src/app/models/pokemon.model";
 import { User } from "src/app/models/user.model";
-import { PokemonCatalogueService } from "src/app/services/catalogue/catalogue.service";
+import { PokemonCatalogueService } from "src/app/services/pokemon-catalogue/pokemon-catalogue.service";
 import { UserService } from "src/app/services/user/user.service";
 import { CatalogueItem } from "../catalogue-item/catalogue-item.component";
 

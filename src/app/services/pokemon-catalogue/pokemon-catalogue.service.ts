@@ -38,6 +38,9 @@ export class PokemonCatalogueService {
     constructor(private readonly http: HttpClient) {}
 
     public findAllPokemon(): void {
+        if(this._pokemons.length > 0)
+            return;
+
         this._loading = true;
         const getEmAll =  "?limit=905"; // "?limit=1008" png not available for all
 
@@ -59,22 +62,7 @@ export class PokemonCatalogueService {
                     pokeObject.id = index + 1;
                     pokeObject.img = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" 
                                         + pokeObject.id.toString() + ".png";
-                    
-                    // this.findSpecs(pokeObject.id); lazy req + async
-                    //console.log(this.pokestats);
-                    //pokeObject.hp = 400;// this._pokeStats[0].base_stat; //[0].base_stat;
-                    //pokeObject.attack = this._pokeStats[1].base_stat;
-                    //pokeObject.def = this._pokeStats[2].base_stat;
-                    //pokeObject.spatk = this._pokeStats[3].base_stat;
-                    //pokeObject.spdef = this._pokeStats[4].base_stat;
-                    //pokeObject.spd = this._pokeStats[5].base_stat;
-                }
-                )
-
-                console.log("here pokestats ", this._pokeStats);
-                console.log("here pokemon obj ", this._pokemons)
-                //console.log("findings: ",pokemons)
-
+                })
             },
             error: (error: HttpErrorResponse) => { // when something goes wrong
                 this._error = error.message;
