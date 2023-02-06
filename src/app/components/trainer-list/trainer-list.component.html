@@ -7,7 +7,7 @@
 <ul>
   <li *ngFor="let item of items"> 
     <section class="border-4 border-gray-300 p-5 mx-2 my-2 bg-red-600 max-w-xs">
-      <app-trainer-item [json]="item" (onRelease)="update()"></app-trainer-item>   
+      <app-trainer-item [json]="item" (onRelease)="onRelease($event)"></app-trainer-item>   
     </section> 
   </li>
 </ul>

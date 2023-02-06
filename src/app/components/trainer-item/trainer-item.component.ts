@@ -1,6 +1,7 @@
+import { HttpErrorResponse } from "@angular/common/http";
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { PokemonModel } from "src/app/models/pokemon.model";
-import { UserService } from "src/app/services/user/user.service";
+import { PokemonModel, StatsModel } from "src/app/models/pokemon.model";
+import { PokemonCatalogueService } from "src/app/services/catalogue/catalogue.service";
 
 @Component({
     selector: "app-trainer-item",
@@ -10,28 +11,49 @@ import { UserService } from "src/app/services/user/user.service";
 
 export class TrainerItem{
     @Input() json?:PokemonModel;
+    private _pokeStats: StatsModel[] = [];
     @Output() onRelease:EventEmitter<PokemonModel> = new EventEmitter<PokemonModel>();
 
     detailed:boolean = false;
+    hasFetchedDetails:boolean = false;
 
-    constructor (
-        private readonly userService: UserService
-    ) { }
+    constructor ( private readonly pokemonCatalogueService:PokemonCatalogueService ) { }
 
-    onReleaseClick(): void {
-        if(this.json != undefined)
-            this.userService.catchPokemon(this.json.name);
+    getStat(stat:number){
+        return this._pokeStats[stat].base_stat;
     }
-    btnRelease(){     
-        this.onReleaseClick();   
-        console.log(this.json?.name + " released!");
 
+    btnRelease():void {       
         if(this.json != undefined)
             this.onRelease.emit(this.json);
         else
             console.log("Json invalid!");
     }
 
-    showDetails(){this.detailed = true}
-    hideDetails(){this.detailed = false}
+    btnShowDetails():void {
+        if(this.hasFetchedDetails)
+            this.showDetails();
+        else
+            this.fetchDetails();
+    }
+
+    fetchDetails():void{
+        if(this.json != undefined)
+        {
+            this.pokemonCatalogueService.findSpecs(this.json.id).subscribe({
+                next: (stats: StatsModel[]) => { // in completion return array 
+                    console.log(stats)    
+                   this._pokeStats = stats; //s[0].base_stat; // stats    
+                   console.log(this._pokeStats)
+                    this.showDetails();
+                },
+                error: (error: HttpErrorResponse) => { // when something goes wrong
+                    console.log("ERROR : " + error.message);
+                } 
+            })
+        }
+    }
+
+    showDetails(){ this.detailed = true }
+    hideDetails(){ this.detailed = false }
 }

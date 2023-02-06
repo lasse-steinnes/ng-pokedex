@@ -39,7 +39,7 @@ export class PokemonCatalogueService {
 
     public findAllPokemon(): void {
         this._loading = true;
-        const getEmAll =  "?limit=2"; // "?limit=1008" png not available for all
+        const getEmAll =  "?limit=905"; // "?limit=1008" png not available for all
 
         this.http.get<PokemonRes>(`${apiPokemon}${getEmAll}`) // list of pokemons
         .pipe(
@@ -52,7 +52,7 @@ export class PokemonCatalogueService {
         .subscribe({
             next: (results: PokemonRes) => { // in completion return array of pokemon
                 this._pokemons = results.results; // pokemons
-                console.log("this mons ", this._pokemons);
+                console.log("this mons ", results.results);
                 // adding id and img url
                 results.results.forEach((pokeObject,index) => {
                     pokeObject.name = pokeObject.name.toUpperCase();
@@ -82,10 +82,10 @@ export class PokemonCatalogueService {
         })
     }
 
-    public findSpecs(id: number): void { // give pokemon id as input
+    public findSpecs(id: number) { // give pokemon id as input
         console.log("here findspecs, number ", id);
         //console.log(`${apiPokemon}/${id}/`);
-        this.http.get<StatsRes>(`${apiPokemon}/${id}/`) // list of pokemons
+        return this.http.get<StatsRes>(`${apiPokemon}/${id}/`) // list of pokemons
         .pipe(
             finalize(() => {
                 this._loading = false;
@@ -94,27 +94,9 @@ export class PokemonCatalogueService {
 
                 return result.stats
 
-            })
-    
-            )
-        .subscribe({
-            next: (stats: StatsModel[]) => { // in completion return array 
-                console.log(stats)
-
-               this._pokeStats = stats; //s[0].base_stat; // stats
-
-               console.log(this._pokeStats)
-                
-                //console.log("stats obj ", this._pokeStats)
- 
-            },
-            error: (error: HttpErrorResponse) => { // when something goes wrong
-                this._error = error.message;
-            } 
-        })
-        
+            })    
+        )  
     }
-}
 
     public pokemonByName(pokemonName?: string){
         return this._pokemons.find((pokemonModel?: PokemonModel) => pokemonModel?.name === pokemonName);
