@@ -9,15 +9,8 @@ import { Router } from '@angular/router';
 })
 
 export class LoginPage{
-    //routes the user from the login page to the pokemon catalogue
-    constructor (private readonly router: Router) { } // ,private trainerService: TrainerService 
-    /*ngOnInit() {
-        this.trainerService.getTrainers()
-          .subscribe(data => {
-            console.log(data)
-          })
-      }*/
 
+    constructor (private readonly router: Router) { }
 
     handleLogin(): void{
         this.router.navigateByUrl("/pokemon-catalogue")

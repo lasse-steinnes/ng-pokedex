@@ -1,4 +1,3 @@
-
 import { Component, OnInit  } from "@angular/core";
 import { PokemonModel } from "src/app/models/pokemon.model";
 import { PokemonCatalogueService } from "src/app/services/catalogue/catalogue.service";
@@ -21,9 +20,7 @@ export class TrainerList implements OnInit{
 
     //should be called if a change is made to the items
     update(){
-        console.log("Trainer list updated!");
         this.items = this.userService.ownedPokemons;
-        //TODO: reload the page
     }
 
     constructor(private readonly pokemonCatalogueService:PokemonCatalogueService, private readonly userService:UserService) {

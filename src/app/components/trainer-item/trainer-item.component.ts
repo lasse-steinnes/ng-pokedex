@@ -1,8 +1,5 @@
-import { HttpErrorResponse } from "@angular/common/http";
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { PokemonModel } from "src/app/models/pokemon.model";
-import { User } from "src/app/models/user.model";
-import { TrainerService } from "src/app/services/trainer/trainer.service";
 import { UserService } from "src/app/services/user/user.service";
 
 @Component({
@@ -18,22 +15,12 @@ export class TrainerItem{
     detailed:boolean = false;
 
     constructor (
-        private readonly trainerService: TrainerService,
         private readonly userService: UserService
     ) { }
 
     onReleaseClick(): void {
-        console.log(this.json?.name)
-        this.trainerService.caughtPokemon(this.json?.name)
-            .subscribe({
-                next: (user: User) => {
-                    console.log("NEXT", user)
-                   // this.isCaught = this.userService.alreadyCaught(this.json?.name)
-                },
-                error: (error: HttpErrorResponse) => {
-                    console.log("ERROR", error.message);
-                }
-            })
+        if(this.json != undefined)
+            this.userService.catchPokemon(this.json.name);
     }
     btnRelease(){     
         this.onReleaseClick();   

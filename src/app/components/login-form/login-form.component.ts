@@ -1,8 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core'
-import { NgForm } from '@angular/forms'
-import { Router } from '@angular/router';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { User } from 'src/app/models/user.model';
-import { LoginService } from 'src/app/services/login/login.service'
+import { LoginService } from 'src/app/services/login/login.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 
