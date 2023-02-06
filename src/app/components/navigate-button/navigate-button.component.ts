@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 
 @Component({
     selector: "app-navigate-button",
-    template: "<button (click)='navigate()'> {{content}} </button>",
+    templateUrl: "navigate-button.component.html",
     styleUrls: ["navigate-button.component.css"]
 })
 
