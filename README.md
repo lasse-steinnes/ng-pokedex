@@ -34,6 +34,10 @@ The following pages are available, with described GUI options:
 ## Project Management
 An overview of the app services, components and pages were made with [figma](https://www.figma.com/file/ZPxa24oBpF0AHCJXPzEh7u/Untitled?node-id=0%3A1&t=zEcUN1OwWVqYHp6x-0).
 
+<b href="https://github.com/lasse-steinnes/ng-pokedex/">
+  <img width = "800" height = "600" src="https://github.com/lasse-steinnes/ng-pokedex/assets/project-management.png">
+</b>
+
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
